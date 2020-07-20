@@ -1,7 +1,13 @@
 package conversor;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 
+import javax.xml.bind.JAXBContext;
+import javax.xml.bind.JAXBException;
+import javax.xml.bind.Unmarshaller;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 
@@ -10,10 +16,16 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
-public class ImprimeXMLnoConsole {
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
+import conversor.beans.Noticia;
+import conversor.beans.Noticias;
+
+public class XMLJsonUtil {
 	
 	
-    public void imprime(String path) {
+    public static void imprimeXMLComoStringNoConsole(String path) {
 
         try {
         	//lê arquivo xml
@@ -54,4 +66,27 @@ public class ImprimeXMLnoConsole {
         }
     }
 
+    public static Noticias converteXMLParaObjeto(String caminho) throws JAXBException, FileNotFoundException {
+    	InputStream in = new FileInputStream(new File(caminho));
+    	
+    	JAXBContext jaxbC = JAXBContext.newInstance(Noticias.class);
+    	Unmarshaller unmS = jaxbC.createUnmarshaller();
+    	
+    	return (Noticias) unmS.unmarshal(in);
+    }
+    
+    public static String converteObjetoParaJsonPretty(Noticias noticias) {
+    	GsonBuilder gsb = new GsonBuilder();
+    	gsb.setPrettyPrinting();
+    	//gsb.disableHtmlEscaping();
+    	
+    	Gson gson = gsb.create();
+    	
+    	return gson.toJson(noticias, Noticias.class);
+    }
+    
+    public static String converteObjetoParaJsonInLine(Noticias noticias) {
+    	return new Gson().toJson(noticias);
+    }    
+    
 }
