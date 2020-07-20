@@ -12,7 +12,7 @@ pid.file
 *.war
 
 /target
-
+target/
 # Projects files
 *.classpath
 *.project
