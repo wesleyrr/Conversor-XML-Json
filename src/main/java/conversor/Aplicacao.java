@@ -3,6 +3,9 @@ package conversor;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.Writer;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.xml.bind.JAXBException;
 
@@ -24,18 +27,24 @@ public class Aplicacao {
         
     	Noticias noticias = XMLJsonUtil.converteXMLParaObjeto(caminho + arquivo);
     	
-    	objJson = XMLJsonUtil.converteObjetoParaJsonPretty(noticias);
-    	
-    	System.out.println("------------------------------------------");
-    	System.out.println(objJson);
+		
+		objJson = XMLJsonUtil.converteObjetoParaJsonPretty(noticias);
+		
+		//objJson = XMLJsonUtil.converteObjetoParaJsonInLine(noticias);
 
-    	System.out.println("------------------------------------------");
+		System.out.println(objJson);
+		 
+    	//TODO gerar os arquivos físicos
+    	Writer writer = new FileWriter("/home/wesley/Desenvolvimento/workspace/conversor/target/noticias/" + arquivo.replace(".html", ".json"));
 
-    	String noticiasJson = XMLJsonUtil.converteObjetoParaJsonInLine(noticias);
-    	System.out.println(noticiasJson);
+    	new Gson().toJson(objJson, writer);
+    	writer.close();
     	
-    	//new Gson().toJson(objJson, new FileWriter("/home/wesley/Desenvolvimento/workspace/conversor/target/noticias/noticias.json"));
     	
+    	//TODO tornar os métodos genéricos
+    	//TODO criar rotina para capturar todos os arquivos
+    	
+		
     }
 
 }

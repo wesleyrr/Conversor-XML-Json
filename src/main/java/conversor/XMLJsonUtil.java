@@ -78,7 +78,7 @@ public class XMLJsonUtil {
     public static String converteObjetoParaJsonPretty(Noticias noticias) {
     	GsonBuilder gsb = new GsonBuilder();
     	gsb.setPrettyPrinting();
-    	//gsb.disableHtmlEscaping();
+    	gsb.disableHtmlEscaping();
     	
     	Gson gson = gsb.create();
     	
