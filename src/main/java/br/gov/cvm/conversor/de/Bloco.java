@@ -1,4 +1,4 @@
-package conversor.beans;
+package br.gov.cvm.conversor.de;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;

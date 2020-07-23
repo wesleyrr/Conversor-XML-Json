@@ -1,4 +1,4 @@
-package conversor.beans;
+package br.gov.cvm.conversor.de;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

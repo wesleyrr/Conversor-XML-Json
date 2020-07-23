@@ -1,4 +1,4 @@
-package conversor;
+package br.gov.cvm.conversor;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -16,11 +16,14 @@ import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
+/*import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.SerializationFeature;*/
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-import conversor.beans.Noticia;
-import conversor.beans.Noticias;
+import br.gov.cvm.conversor.de.Noticias;
 
 public class XMLJsonUtil {
 	
@@ -80,6 +83,7 @@ public class XMLJsonUtil {
     	gsb.setPrettyPrinting();
     	gsb.disableHtmlEscaping();
     	
+    	
     	Gson gson = gsb.create();
     	
     	return gson.toJson(noticias, Noticias.class);
@@ -89,4 +93,15 @@ public class XMLJsonUtil {
     	return new Gson().toJson(noticias);
     }    
     
+    
+    
+	/*
+	 * public static String toPrettyFormat(Object jsonObj) throws
+	 * JsonProcessingException { ObjectMapper mapper = new ObjectMapper();
+	 * 
+	 * mapper.enable(SerializationFeature.INDENT_OUTPUT); String prettyJson =
+	 * mapper.writeValueAsString(jsonObj);
+	 * 
+	 * return prettyJson; }
+	 */
 }

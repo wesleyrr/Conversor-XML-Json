@@ -1,4 +1,4 @@
-package conversor.beans;
+package br.gov.cvm.conversor.de;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +15,9 @@ import com.google.gson.annotations.SerializedName;
 @XmlRootElement(name = "Noticias")
 public class Noticias {
 	
-	@Expose
-	@SerializedName("noticias")
-	@XmlElement(name = "Noticia")
+	//@Expose
+	@SerializedName("_ac_local_roles")
+	@XmlElement(name = "Noticia" )
 	private ArrayList<Noticia> noticias = null;
 
 	public ArrayList<Noticia> getNoticias() {

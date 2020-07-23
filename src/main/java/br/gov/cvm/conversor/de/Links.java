@@ -1,4 +1,4 @@
-package conversor.beans;
+package br.gov.cvm.conversor.de;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
