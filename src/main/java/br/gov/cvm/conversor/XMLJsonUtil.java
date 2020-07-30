@@ -26,49 +26,8 @@ import com.google.gson.GsonBuilder;
 import br.gov.cvm.conversor.de.Noticias;
 
 public class XMLJsonUtil {
-	
-	
-    public static void imprimeXMLComoStringNoConsole(String path) {
 
-        try {
-        	//lê arquivo xml
-            File fXmlFile = new File(path);
-            
-            DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
-            DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
-            Document doc = dBuilder.parse(fXmlFile);
-            doc.getDocumentElement().normalize();
-
-            System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
-
-            NodeList nList = doc.getElementsByTagName("Noticia");
-
-            System.out.println("----------------------------");
-
-            for (int temp = 0; temp < nList.getLength(); temp++) {
-
-                Node nNode = nList.item(temp);
-
-                System.out.println("\nCurrent Element :" + nNode.getNodeName());
-
-                if (nNode.getNodeType() == Node.ELEMENT_NODE) {
-
-                    Element eElement = (Element) nNode;
-
-                    //System.out.println("id : " + eElement.getAttribute("id"));
-                    System.out.println("Titulo : "+ eElement.getElementsByTagName("Titulo").item(0).getTextContent());
-                    System.out.println("Subtitulo : " + eElement.getElementsByTagName("Subtitulo").item(0).getTextContent());
-                    System.out.println("Data : " + eElement.getElementsByTagName("Data").item(0).getTextContent());
-                    System.out.println("DataBusca : "+ eElement.getElementsByTagName("DataBusca").item(0).getTextContent());
-                    System.out.println("Conteúdo : "+ eElement.getElementsByTagName("content").item(0).getTextContent());
-
-                }
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
+    //TODO mudar para retornar qualquer objeto
     public static Noticias converteXMLParaObjeto(String caminho) throws JAXBException, FileNotFoundException {
     	InputStream in = new FileInputStream(new File(caminho));
     	
@@ -78,6 +37,7 @@ public class XMLJsonUtil {
     	return (Noticias) unmS.unmarshal(in);
     }
     
+    //TODO mudar para aceitar/retornar qualqer objeto
     public static String converteObjetoParaJsonPretty(Noticias noticias) {
     	GsonBuilder gsb = new GsonBuilder();
     	gsb.setPrettyPrinting();
@@ -94,6 +54,45 @@ public class XMLJsonUtil {
     }    
     
     
+    public static void imprimeXMLComoStringNoConsole(String path) {
+    	try {
+    		//lê arquivo xml
+    		File fXmlFile = new File(path);
+    		
+    		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
+    		DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
+    		Document doc = dBuilder.parse(fXmlFile);
+    		doc.getDocumentElement().normalize();
+    		
+    		System.out.println("Root element :" + doc.getDocumentElement().getNodeName());
+    		
+    		NodeList nList = doc.getElementsByTagName("Noticia");
+    		
+    		System.out.println("----------------------------");
+    		
+    		for (int temp = 0; temp < nList.getLength(); temp++) {
+    			
+    			Node nNode = nList.item(temp);
+    			
+    			System.out.println("\nCurrent Element :" + nNode.getNodeName());
+    			
+    			if (nNode.getNodeType() == Node.ELEMENT_NODE) {
+    				
+    				Element eElement = (Element) nNode;
+    				
+    				//System.out.println("id : " + eElement.getAttribute("id"));
+    				System.out.println("Titulo : "+ eElement.getElementsByTagName("Titulo").item(0).getTextContent());
+    				System.out.println("Subtitulo : " + eElement.getElementsByTagName("Subtitulo").item(0).getTextContent());
+    				System.out.println("Data : " + eElement.getElementsByTagName("Data").item(0).getTextContent());
+    				System.out.println("DataBusca : "+ eElement.getElementsByTagName("DataBusca").item(0).getTextContent());
+    				System.out.println("Conteúdo : "+ eElement.getElementsByTagName("content").item(0).getTextContent());
+    				
+    			}
+    		}
+    	} catch (Exception e) {
+    		e.printStackTrace();
+    	}
+    }
     
 	/*
 	 * public static String toPrettyFormat(Object jsonObj) throws

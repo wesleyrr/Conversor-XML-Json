@@ -1,24 +1,19 @@
 
 # Java compiled files
-*.class
-
-
-# Number of process keeper
-pid.file
-
+.class
 
 # Package Files 
-*.jar
-*.war
+.jar
+.war
 
-/target
 target/
+
 # Projects files
-*.classpath
-*.project
-*.settings/
-*.springBeans
-*.sts4-cache/
-*.svn
-*.vscode/
-*.tern-project
+.classpath
+.project
+.settings/
+.springBeans
+.sts4-cache
+.svn
+.vscode/
+.tern-project
